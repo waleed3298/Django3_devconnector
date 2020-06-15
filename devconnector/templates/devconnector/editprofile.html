@@ -1,0 +1,56 @@
+{% extends 'devconnector\base.html' %}
+{% load static %}
+{% block content %}
+<div class="text-center mt-5">
+<h1>Edit Profile</h1>
+<p class="text-center mb-3 text-danger"  style="font-size:15px;font-weight:heavy;">{{error}}</p>
+</div>
+<form method="post">
+  {% csrf_token %}
+  <input class="form-control form-control-lg" style="font-size:18px;color:#8f8f8f;" type="text" name="name" value="{{profiles.name}}">
+  <small class="form-text text-muted text-center">A unique handle for your profile URL. Your full name, company name, nickname</small>
+  <br>
+  <br>
+  <input class="form-control form-control-lg" style="font-size:18px;color:#8f8f8f;" type="text" name="github_id" value="{{profiles.github_id}}">
+    <small class="form-text text-muted text-center">If you want your latest repos or a Github link</small><br>
+    <input class="form-control form-control-lg" style="font-size:18px;color:#8f8f8f;" type="text" name="Personal_site" value="{{profiles.Personal_site}}">
+      <small class="form-text text-muted text-center">Could be your own website or company one</small><br>
+    <input class="form-control form-control-lg" style="font-size:18px;color:#8f8f8f;" type="text" name="company" value="{{profiles.company}}">
+    <small class="form-text text-muted text-center">Could be your own company or one you work for</small><br>
+    <input class="form-control form-control-lg" style="font-size:18px;color:#8f8f8f;" type="text" name="role" value="{{profiles.role}}">
+    <small class="form-text text-muted text-center">Give us an idea of where you are at in your career</small><br>
+    <textarea class="form-control form-control-lg" style="font-size:18px;color:#8f8f8f;" name="bio" rows="4" cols="40" placeholder="{{profiles.bio}}"></textarea>
+    <small class="form-text text-muted text-center">Tell us a little about yourself</small><br>
+    <textarea class="form-control form-control-lg"style="font-size:18px;color:#8f8f8f;" name="skills" rows="4" cols="40" placeholder="{{profiles.skills}}"></textarea>
+    <small class="form-text text-muted text-center">Please use comma, separated values (eg. HTML, CSS, PHP)</small>
+<br>
+<button  class="btn btn-lg btn-light" style="width:55%;position:relative;left:22%;" type="button" name="button" onclick="myFunction()"> + Add Social Network links  <span class="text-muted"> (Optional) </span></button><br>
+<div  id="myDIV">
+<input  class="form-control form-control-lg" style="font-size:18px;color:#8f8f8f;"placeholder="Facebook Url"  name="fb_link" value="{{profiles.fb_link}}"><br>
+<input  class="form-control form-control-lg" style="font-size:18px;color:#8f8f8f;"placeholder="Linked in "  name="Linked_in" value="{{profiles.Linked_in}}"><br>
+<input  class="form-control form-control-lg" style="font-size:18px;color:#8f8f8f;"placeholder="Instagram URL"  name="insta_link" value="{{profiles.insta_link}}"><br>
+</div><br>
+<button class="btn btn-block btn-info" style="width:55%;position:relative;left:22%;" type="submit" name="button">Submit</button><br>
+</form>
+
+<style media="screen">
+  input , textarea{
+    border-radius:10px;
+    width:55% !important;
+    height:60px;
+    position:relative;
+    left:22%;
+  }
+</style>
+
+<script type="text/javascript">
+  function myFunction() {
+  var x = document.getElementById("myDIV");
+  if (x.style.display === "none") {
+    x.style.display = "block";
+  } else {
+    x.style.display = "none";
+  }
+}
+</script>
+{% endblock %}

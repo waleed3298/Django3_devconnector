@@ -1,0 +1,25 @@
+{% extends 'devconnector/base.html' %}
+{% load static %}
+{% block content %}
+<h1 class="text-center mt-4" style="font-size:50px;">Log In </h1>
+<p class="text-center"  style="font-size:20px;font-weight:heavy;">Login to your DevConnector account</p>
+<p class="text-center mb-3 text-danger"  style="font-size:15px;font-weight:heavy;">{{error}}</p>
+<form class="text-center" action="" method="post">
+  {% csrf_token %}
+  <input class="form-control form-control-lg" type="text" name="username" value="" placeholder="Name"><br>
+  <input class="form-control form-control-lg" type="text" name="password" value="" placeholder="Password"><br>
+<button class="btn btn-block btn-info mb-3"  style="width:55%;position:relative;left:22%;" type="submit" name="button">Login</button><br>
+</form>
+<br><br><br><br>
+
+<style media="screen">
+  input{
+    border-radius:10px;
+    width:55% !important;
+    height:60px;
+    position:relative;
+    left:22%;
+  }
+</style>
+
+{% endblock %}

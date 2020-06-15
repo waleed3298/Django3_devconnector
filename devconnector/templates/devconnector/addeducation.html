@@ -1,0 +1,47 @@
+{% extends 'devconnector\base.html' %}
+{% load static %}
+{% block content %}
+<div class="text-center mt-5">
+<h1>Add Education</h1>
+<h5>{{error}}</h5>
+</div>
+
+<form class="" method="post">
+  {% csrf_token %}
+  <input class="form-control form-control-lg t1" style="font-size:18px;color:#8f8f8f;" type="text" name="Degree_name" value="" placeholder="Degree Name" required>
+  <small class="form-text text-muted text-center">Add the name of the Degree.</small>
+<br>
+  <input class="form-control form-control-lg t1" style="font-size:18px;color:#8f8f8f;" type="text" name="Institute" value="" placeholder="Institute" required>
+  <small class="form-text text-muted text-center">Details  of the Institute you go degree from</small>
+<br>
+  <input class="form-control form-control-lg t1" style="font-size:18px;color:#8f8f8f;" type="date" name="date_started" value="" placeholder="Date Started" required>
+  <small class="form-text text-muted text-center">The date you started there</small>
+<br>
+  <input class="form-control form-control-lg t1" style="font-size:18px;color:#8f8f8f;" type="date" name="date_completed" value="" placeholder="Date Completed">
+  <small class="form-text text-muted text-center">The date till you completed your degree --Optional</small>
+<br>
+<div class="text-center">
+<input class=".t2 text-center" type="checkbox" name="currently" value="Currently Studying"> Currently Studying<br>
+</div><br>
+  <button class="btn btn-block btn-info" style="width:55%;position:relative;left:22%;" type="submit" name="button">Submit</button><br>
+
+</form>
+
+
+<style media="screen">
+  .t1{
+    border-radius:10px;
+    width:55% !important;
+    height:60px;
+    position:relative;
+    left:22%;
+  }
+  .t2{
+    position:relative;
+    left:22%;
+  }
+
+</style>
+
+
+{% endblock %}

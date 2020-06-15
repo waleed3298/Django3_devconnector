@@ -1,0 +1,18 @@
+if 'image' in request.POST:
+        profile.image = request.POST['image']
+    else:
+        profile.image = False
+        instance = Developer(image=request.FILES['{% static "devconnector/nopic1.png"}'])
+        instance.save()
+        profile.image = instance
+
+
+        if request.method == 'POST':
+                form = UploadFileForm(request.POST, request.FILES)
+                if form.is_valid():
+                    instance = ModelWithFileField(file_field=request.FILES['file'])
+                    instance.save()
+                    return HttpResponseRedirect('/success/url/')
+            else:
+                form = UploadFileForm()
+            return render(request, 'upload.html', {'form': form})

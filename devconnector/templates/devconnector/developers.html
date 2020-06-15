@@ -1,0 +1,33 @@
+{% extends 'devconnector/base.html' %}
+{% load static %}
+{% block content %}
+<h1 class="text-center mt-4" style="font-size:50px;">Developer profiles </h1>
+<p class="text-center mb-4"  style="font-size:20px;font-weight:heavy;">Browse and connect with developers</p>
+{% for profile in profiles %}
+{% if profile.user != request.user %}
+      <div class="card card-body bg-light mb-3 mt-3 text-center mt-3" style="width:70%;position:relative;left:15%;">
+      <div class="row text-center">
+      {% if profile.image %}
+        <div class="col-2 text-center ml-4">
+          <img src="{{profile.image.url}}" alt="" class="rounded-circle text-center ml-5" width="150px" height="150px">
+        </div>
+      {% else %}
+        <div class="col-2 text-center ml-5">
+        <img src="{% static 'devconnector/nopic1.png' %}" alt="" class="rounded-circle text-center ml-5" width="150px" height="150px">
+        </div>
+      {% endif %}
+      <div class="col-lg-4  text-center ml-2 mt-3">
+      <h3>{{profile.name}}</h3>
+      <p>{{profile.role}}</p>
+      <p><span>{{profile.company}}</span>
+      </p>
+    </div>
+    <div class="col-lg-2 mt-4">
+      <a class="btn btn-info mt-4" href="{% url 'developerinfo' profile.slug %}">View Profile</a>
+    </div>
+      </div>
+      </div>
+{% endif %}
+{% endfor %}
+
+{% endblock %}

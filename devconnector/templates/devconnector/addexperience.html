@@ -1,0 +1,47 @@
+{% extends 'devconnector\base.html' %}
+{% load static %}
+{% block content %}
+<div class="text-center mt-5">
+<h1>Add Experience</h1>
+<h5>{{error}}</h5>
+</div>
+
+<form class="" method="post">
+  {% csrf_token %}
+  <input class="form-control form-control-lg t1" style="font-size:18px;color:#8f8f8f;" type="text" name="company" value="" placeholder="Company" required>
+  <small class="form-text text-muted text-center">Add the name of the company /organization.</small>
+<br>
+  <input class="form-control form-control-lg t1" style="font-size:18px;color:#8f8f8f;" type="text" name="position" value="" placeholder="Position/Role" required>
+  <small class="form-text text-muted text-center">Describe your role in that company</small>
+<br>
+  <input class="form-control form-control-lg t1" style="font-size:18px;color:#8f8f8f;" type="date" name="date_started_w" value="" placeholder="Date Started" required>
+  <small class="form-text text-muted text-center">The date you were appointed</small>
+<br>
+  <input class="form-control form-control-lg t1" style="font-size:18px;color:#8f8f8f;" type="date" name="date_completed_w" value="" placeholder="Date Completed">
+  <small class="form-text text-muted text-center">The date till you worked</small>
+<br>
+<div class="text-center">
+<input class=".t2 text-center" type="checkbox" name="currently_w" value="Currently Working"> Currently Working <br>
+</div><br>
+  <button class="btn btn-block btn-info" style="width:55%;position:relative;left:22%;" type="submit" name="button">Submit</button><br>
+
+</form>
+
+
+<style media="screen">
+  .t1{
+    border-radius:10px;
+    width:55% !important;
+    height:60px;
+    position:relative;
+    left:22%;
+  }
+  .t2{
+    position:relative;
+    left:22%;
+  }
+
+</style>
+
+
+{% endblock %}

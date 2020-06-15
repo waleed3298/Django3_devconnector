@@ -1,0 +1,108 @@
+{% extends 'devconnector/base.html' %}
+{% load static %}
+
+{% block content %}
+{% for  profile in profiles %}
+<div class="" style="margin-top:2%;margin-left:10%;">
+<h1 class="">Dashboard</h1>
+<p class="text-muted" style="font-size:20px;font-weight:light;">Welcome <span style="font-weight:bold !important;" class="text-info">{{profile.name}}</span></p>
+<a href="{% url 'editprofile' profile.id %}">
+<button  class="btn btn-lg btn-light" style="display:inline !important;font-size:17px;" type="button" name="button"><i class="fas fa-user-circle text-info"></i> Edit Profile</button>
+</a>
+<a href="{% url 'addexperience' %}">
+  <button  class="btn btn-lg btn-light" style="display:inline !important;font-size:17px;" type="button" name="button"><i class="fab fa-black-tie text-info"></i> Add Experience</button>
+</a>
+<a href="{% url 'addeducation' %}">
+    <button  class="btn btn-lg btn-light" style="display:inline !important;font-size:17px;" type="button" name="button""><i class="fas fa-graduation-cap text-info"></i> Add Education</button><br><br>
+</a>
+<p  style="font-size:25px;font-weight:medium;">Experience Credentials</p>
+    <table class="table" style="width:80% !important">
+      <thead class="thead-dark">
+        <tr>
+          <th scope="col">Company</th>
+          <th scope="col">Title</th>
+          <th scope="col">Years</th>
+          <th scope="col"></th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for work in works %}
+        <tr>
+          <td>{{work.company}}</td>
+          <td>{{work.position}}</td>
+          {% if not work.currently_w %}
+          <td >
+            {{work.date_started_w}}-{{work.date_completed_w}}
+          </td>
+            {% else %}
+            <td>
+            {{work.date_started_w}}-<span class="text-info" style="font-weight:bold">Currently</span>
+          </td>
+            {% endif %}
+        <td><form class="" action="{% url 'deleteexperience' work.id %}" method="post">
+          {% csrf_token %}
+          <button class="btn btn-md btn-danger" type="submit" name="button">Delete</button>
+        </form></td>
+        </tr>
+       {% endfor %}
+     </tbody>
+    </table>
+
+
+    <p  style="font-size:25px;font-weight:medium;">Education Credentials</p>
+
+        <table class="table" style="width:80% !important">
+          <thead class="thead-dark">
+            <tr>
+              <th scope="col">Institute</th>
+              <th scope="col">Degree</th>
+              <th scope="col">Years</th>
+              <th scope="col"></th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for edu in edu %}
+            <tr>
+
+              <td>{{edu.Institute}}</td>
+              <td>{{edu.Degree_name}}</td>
+              {% if edu.currently %}
+              <td >
+              {{edu.date_started}}-<span class="text-info" style="font-weight:bold">Currently</span>
+
+              </td>
+                {% else %}
+                <td>{{edu.date_started}}-{{edu.date_completed}}</td>
+                {% endif %}
+              <td>
+                <form class="" action="{% url 'deleteeducation' edu.id %}" method="post">
+                {% csrf_token %}
+                <button class="btn btn-md btn-danger" type="submit" name="button">Delete</button>
+              </form>
+              </td>
+            </tr>
+           {% endfor %}
+
+         </tbody>
+        </table>
+<br><br>
+<form class="" action="{% url 'deleteprofile' profile.id %}" method="post">
+{% csrf_token %}
+<button type="submit" class="btn btn-md btn-danger" name="button">Delete my account</button>
+</form>
+<br><br>
+</div>
+
+{% endfor %}
+{% if not profiles %}
+<div class="" style="margin-top:2%;margin-left:10%;">
+<h1 class="">Dashboard</h1>
+<p class="text-muted" style="font-size:20px;font-weight:light;">Welcome <span style="font-weight:bold !important;" class="text-info">{{user}}</span></p>
+<p class="text-muted" style="font-size:20px;font-weight:light;">You have not yet setup a profile, please add some info</p>
+<p class="text-muted" style="font-size:20px;font-weight:light;">You can access the post feed once your done setting up your profile.</p>
+<a href="{% url 'createprofile' %}"><button class="btn btn-lg btn-info mt-2"style="margin-bottom:22.5%;" type="button" name="createprofile">Create Profile</button>
+</a>
+</div>
+{% endif %}
+
+{% endblock %}
